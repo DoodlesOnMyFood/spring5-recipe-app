@@ -90,7 +90,7 @@ public class DataInsert implements CommandLineRunner {
         guacamole.setServings(4);
         guacamole.setDescription("Perfect Guacamole");
         guacamole.setDifficulty(Difficulty.Easy);
-        File image = new File("/home/jisoo/Downloads/guacamole.webp");
+        File image = new File("src/main/resources/static/tacos.webp");
         guacamole.setImage(Files.readAllBytes(image.toPath()));
         Notes note = new Notes();
         note.setRecipeNotes("\n" +
@@ -222,7 +222,7 @@ public class DataInsert implements CommandLineRunner {
         lime.setAmount(BigDecimal.valueOf(1));
         lime.setDescription("lime, cut into wedges ");
         taco.addIngredient(lime);
-        File imageTaco = new File("/home/jisoo/Downloads/taco.webp");
+        File imageTaco = new File("src/main/resources/static/tacos.webp");
         taco.setImage(Files.readAllBytes(image.toPath()));
         Notes tacoNote = new Notes();
         tacoNote.setRecipeNotes("\n" +
