@@ -85,15 +85,16 @@ public class DataInsert implements CommandLineRunner {
 
         guacamole.setUrl("https://www.simplyrecipes.com/recipes/perfect_guacamole/");
         guacamole.setSource("Simply Recipes");
-        guacamole.setCookTime(0);
-        guacamole.setPrepTime(0);
+        guacamole.setCookTime(10);
+        guacamole.setPrepTime(30);
         guacamole.setServings(4);
         guacamole.setDescription("Perfect Guacamole");
         guacamole.setDifficulty(Difficulty.Easy);
         File image = new File("src/main/resources/static/tacos.webp");
         guacamole.setImage(Files.readAllBytes(image.toPath()));
         Notes note = new Notes();
-        note.setRecipeNotes("\n" +
+        note.setRecipeNotes("Once you have basic guacamole down, feel free to experiment with variations including strawberries, peaches, pineapple, mangoes, even watermelon. One classic Mexican guacamole has pomegranate seeds and chunks of peaches in it (a Diana Kennedy favorite). You can get creative with homemade guacamole!");
+        guacamole.setDirections("\n" +
                 "\n" +
                 "    Cut the avocado, remove flesh:\n" +
                 "\n" +
@@ -225,7 +226,17 @@ public class DataInsert implements CommandLineRunner {
         File imageTaco = new File("src/main/resources/static/tacos.webp");
         taco.setImage(Files.readAllBytes(image.toPath()));
         Notes tacoNote = new Notes();
-        tacoNote.setRecipeNotes("\n" +
+        tacoNote.setRecipeNotes(" We have a family motto and it is this: Everything goes better in a tortilla.\n" +
+                "\n" +
+                "Any and every kind of leftover can go inside a warm tortilla, usually with a healthy dose of pickled jalapenos. I can always sniff out a late-night snacker when the aroma of tortillas heating in a hot pan on the stove comes wafting through the house.\n" +
+                "\n" +
+                "Today's tacos are more purposeful – a deliberate meal instead of a secretive midnight snack!\n" +
+                "\n" +
+                "First, I marinate the chicken briefly in a spicy paste of ancho chile powder, oregano, cumin, and sweet orange juice while the grill is heating. You can also use this time to prepare the taco toppings.\n" +
+                "\n" +
+                "Grill the chicken, then let it rest while you warm the tortillas. Now you are ready to assemble the tacos and dig in. The whole meal comes together in about 30 minutes! ");
+
+        taco.setDirections("\n" +
                 "Prepare a gas or charcoal grill for medium-high, direct heat\n" +
                 "Make the marinade and coat the chicken:\n" +
                 "\n" +
