@@ -69,9 +69,9 @@ public class DataInsert implements CommandLineRunner {
         radish.setUom(unitOfMeasureRepository.findByDescription("As much as you need").get());
         radish.setAmount(BigDecimal.ONE);
         Ingredient tortillaChips = new Ingredient();
-        tortillaChips.setAmount(null);
+        tortillaChips.setAmount(BigDecimal.ZERO);
         tortillaChips.setDescription("Tortilla chips, to serve");
-        tortillaChips.setUom(null);
+        tortillaChips.setUom(unitOfMeasureRepository.findByDescription("Whole").get());
 
         guacamole.addIngredient(tortillaChips);
         guacamole.addIngredient(radish);
@@ -174,12 +174,12 @@ public class DataInsert implements CommandLineRunner {
         juice.setDescription("fresh-squeezed orange juice");
         taco.addIngredient(juice);
         Ingredient chicken = new Ingredient();
-        chicken.setUom(null);
+        chicken.setUom(unitOfMeasureRepository.findByDescription("Whole").get());
         chicken.setAmount(BigDecimal.valueOf(6));
         chicken.setDescription("skinless, boneless chicken thighs (1 1/4 pounds)");
         taco.addIngredient(chicken);
         Ingredient tortilla = new Ingredient();
-        tortilla.setUom(null);
+        tortilla.setUom(unitOfMeasureRepository.findByDescription("Whole").get());
         tortilla.setAmount(BigDecimal.valueOf(8));
         tortilla.setDescription("small corn tortillas ");
         taco.addIngredient(tortilla);
@@ -199,17 +199,17 @@ public class DataInsert implements CommandLineRunner {
         radishTaco.setDescription("radishes, thinly sliced ");
         taco.addIngredient(radishTaco);
         Ingredient onionTaco = new Ingredient();
-        onionTaco.setUom(null);
+        onionTaco.setUom(unitOfMeasureRepository.findByDescription("Whole").get());
         onionTaco.setAmount(BigDecimal.valueOf(0.25));
         onionTaco.setDescription("red onion, thinly sliced ");
         taco.addIngredient(onionTaco);
         Ingredient cilantro = new Ingredient();
-        cilantro.setUom(null);
-        cilantro.setAmount(null);
+        cilantro.setUom(unitOfMeasureRepository.findByDescription("Whole").get());
+        cilantro.setAmount(BigDecimal.ZERO);
         cilantro.setDescription("Roughly chopped cilantro ");
         taco.addIngredient(cilantro);
         Ingredient cherryTomato = new Ingredient();
-        cherryTomato.setUom(null);
+        cherryTomato.setUom(unitOfMeasureRepository.findByDescription("Whole").get());
         cherryTomato.setAmount(BigDecimal.valueOf(0.5));
         cherryTomato.setDescription("pint cherry tomatoes, halved ");
         taco.addIngredient(cherryTomato);
