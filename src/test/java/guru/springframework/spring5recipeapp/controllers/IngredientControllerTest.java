@@ -2,17 +2,19 @@ package guru.springframework.spring5recipeapp.controllers;
 
 import guru.springframework.spring5recipeapp.commands.IngredientCommand;
 import guru.springframework.spring5recipeapp.commands.RecipeCommand;
-import guru.springframework.spring5recipeapp.domain.Recipe;
 import guru.springframework.spring5recipeapp.services.IngredientService;
 import guru.springframework.spring5recipeapp.services.RecipeService;
+import guru.springframework.spring5recipeapp.services.UnitOfMeasureService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import static org.junit.jupiter.api.Assertions.*;
+import java.util.HashSet;
+
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -27,13 +29,14 @@ class IngredientControllerTest {
     IngredientService ingredientService;
 
     IngredientController controller;
-
+    @Mock
+    UnitOfMeasureService unitOfMeasureService;
     MockMvc mockMvc;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
-        controller = new IngredientController(recipeService, ingredientService);
+        controller = new IngredientController(recipeService, ingredientService, unitOfMeasureService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
@@ -62,5 +65,35 @@ class IngredientControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(view().name("recipe/ingredient/show"))
                 .andExpect(model().attributeExists("ingredient"));
+    }
+
+
+    @Test
+    void updateRecipeIngredient() throws Exception {
+        IngredientCommand command = new IngredientCommand();
+
+        when(ingredientService.findByRecipeIdandId(anyLong(), anyLong())).thenReturn(command);
+        when(unitOfMeasureService.listAllUoms()).thenReturn(new HashSet<>());
+
+        mockMvc.perform(get("/recipe/1/ingredient/2/update"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredient/ingredientform"))
+                .andExpect(model().attributeExists("ingredient"))
+                .andExpect(model().attributeExists("uomList"));
+    }
+
+    @Test
+    void saveOrUpdate() throws Exception {
+        IngredientCommand command = new IngredientCommand();
+        command.setRecipeId(2L);
+        command.setId(3L);
+        when(ingredientService.saveIngredientCommand(any(IngredientCommand.class))).thenReturn(command);
+
+        mockMvc.perform(post("/recipe/2/ingredient")
+                .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+                .param("id", "")
+                .param("description", "123"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/recipe/2/ingredient/3/show"));
     }
 }
