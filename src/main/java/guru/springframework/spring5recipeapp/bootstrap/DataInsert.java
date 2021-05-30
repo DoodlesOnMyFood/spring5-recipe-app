@@ -90,7 +90,7 @@ public class DataInsert implements CommandLineRunner {
         guacamole.setServings(4);
         guacamole.setDescription("Perfect Guacamole");
         guacamole.setDifficulty(Difficulty.Easy);
-        File image = new File("src/main/resources/static/tacos.webp");
+        File image = new File("src/main/resources/static/images/tacos.webp");
         guacamole.setImage(Files.readAllBytes(image.toPath()));
         Notes note = new Notes();
         note.setRecipeNotes("Once you have basic guacamole down, feel free to experiment with variations including strawberries, peaches, pineapple, mangoes, even watermelon. One classic Mexican guacamole has pomegranate seeds and chunks of peaches in it (a Diana Kennedy favorite). You can get creative with homemade guacamole!");
@@ -223,7 +223,7 @@ public class DataInsert implements CommandLineRunner {
         lime.setAmount(BigDecimal.valueOf(1));
         lime.setDescription("lime, cut into wedges ");
         taco.addIngredient(lime);
-        File imageTaco = new File("src/main/resources/static/tacos.webp");
+        File imageTaco = new File("src/main/resources/static/images/tacos.webp");
         taco.setImage(Files.readAllBytes(image.toPath()));
         Notes tacoNote = new Notes();
         tacoNote.setRecipeNotes(" We have a family motto and it is this: Everything goes better in a tortilla.\n" +
