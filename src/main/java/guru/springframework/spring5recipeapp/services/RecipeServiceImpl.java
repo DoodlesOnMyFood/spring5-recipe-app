@@ -1,5 +1,6 @@
 package guru.springframework.spring5recipeapp.services;
 
+import guru.springframework.spring5recipeapp.exceptions.NotFoundException;
 import guru.springframework.spring5recipeapp.commands.RecipeCommand;
 import guru.springframework.spring5recipeapp.converters.RecipeCommandToRecipe;
 import guru.springframework.spring5recipeapp.converters.RecipeToRecipeCommand;
@@ -40,7 +41,7 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public Recipe findById(Long id) {
         Optional<Recipe> recipeOptional = recipeRepository.findById(id);
-        if(recipeOptional.isEmpty()) throw new RuntimeException("Recipe Not Found");
+        if(recipeOptional.isEmpty()) throw new NotFoundException("Recipe Not Found. For ID value " + id);
         return recipeOptional.get();
     }
 

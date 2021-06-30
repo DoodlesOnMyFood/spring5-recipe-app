@@ -68,4 +68,4 @@ class ImageControllerTest {
                 .andReturn().getResponse();
         assertEquals(s.getBytes(StandardCharsets.UTF_8).length, response.getContentAsByteArray().length);
     }
-}ㅂ
+}

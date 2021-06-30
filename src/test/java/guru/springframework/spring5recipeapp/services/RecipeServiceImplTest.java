@@ -77,12 +77,20 @@ class RecipeServiceImplTest {
         assertNotNull(commandById);
         verify(recipeRepository, times(1)).findById(anyLong());
     }
-
     @Test
     void testDeleteById() {
         Long idToDelete = 2L;
 
         recipeService.deleteById(idToDelete);
         verify(recipeRepository, times(1)).deleteById(anyLong());
+    }
+
+    @Test
+    public void getRecipeByIDTestNotFound(){
+        Optional<Recipe> recipeOptional = Optional.empty();
+        when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+        assertThrows(RuntimeException.class, () -> {
+                Recipe recipeReturned = recipeService.findById(1L);
+        });
     }
 }
